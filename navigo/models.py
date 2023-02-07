@@ -10,3 +10,6 @@ class Vehicle(models.Model):
 	vehicle_type = models.CharField(max_length=200)
 	date_added = models.DateTimeField(auto_now_add=True)
 	
+
+
+	
