@@ -9,12 +9,20 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from navigo.models import Vehicle
 
 
-class Index(LoginRequiredMixin, View):
+class DashboardView(View):
     template = "navigo/index.html"
     login_url = "login"
 
     def get(self, request):
         return render(request, self.template)
+
+class UserHomeView(View):
+    template = "navigo/user_home.html"
+    login_url = "login"
+
+    def get(self, request):
+        return render(request, self.template)
+
 
 class Login(View):
     template = "navigo/login.html"
@@ -34,10 +42,20 @@ class Login(View):
         else:
             return render(request, self.template, {"form": form})
 
-class VehicleList(LoginRequiredMixin, View):
+class VehicleView(View):
     template = "navigo/vehicle.html"
     login_url = "login"
 
     def get(self, request):
         vehicles = Vehicle.objects.all()
         return render(request, self.template, {'vehicles': vehicles})
+
+
+class ListingView(View):
+    template = "navigo/listing.html"
+    login_url = "login"
+
+    def get(self, request):
+        vehicles = Vehicle.objects.all()
+        return render(request, self.template, {'vehicles': vehicles})
+
